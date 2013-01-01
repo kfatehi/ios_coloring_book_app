@@ -1,0 +1,12 @@
+.dat**
+*.swp
+vendor/*/build-*
+vendor/*/.build/*
+vendor/Pods/*
+.DS_Store
+.repl_history
+build
+resources/*.nib
+resources/*.momd
+resources/*.storyboardc
+ib.xcodeproj

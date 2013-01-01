@@ -1,0 +1,35 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<class name='NSData'>
+<method selector='base64EncodedString'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='base64EncodedStringWithWrapWidth:'>
+<arg declared_type='NSUInteger' name='wrapWidth' index='0' type='I'/>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='dataWithBase64EncodedString:' class_method='true'>
+<arg declared_type='NSString*' name='string' index='0' type='@'/>
+<retval declared_type='NSData*' type='@'/>
+</method>
+</class>
+<class name='NSString'>
+<method selector='base64DecodedData'>
+<retval declared_type='NSData*' type='@'/>
+</method>
+<method selector='base64DecodedString'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='base64EncodedString'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='base64EncodedStringWithWrapWidth:'>
+<arg declared_type='NSUInteger' name='wrapWidth' index='0' type='I'/>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='stringWithBase64EncodedString:' class_method='true'>
+<arg declared_type='NSString*' name='string' index='0' type='@'/>
+<retval declared_type='NSString*' type='@'/>
+</method>
+</class>
+</signatures>
