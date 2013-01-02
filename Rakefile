@@ -14,4 +14,7 @@ Motion::Project::App.setup do |app|
   app.interface_orientations << :portrait_upside_down
 
   app.deployment_target = "5.0" 
+
+  app.provisioning_profile = "/Users/keyvan/Library/MobileDevice/Provisioning Profiles/4FFBF442-D363-4D62-9C8F-D6F4D90F1D43.mobileprovision"
+  app.codesign_certificate = "iPhone Distribution: Sabet Brands, Inc."
 end
