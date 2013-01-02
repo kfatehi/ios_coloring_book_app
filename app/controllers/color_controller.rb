@@ -1,4 +1,4 @@
-class ColorController < ViewController::Base
+class ColorController < ViewController::Portrait
   
   outlet :draw_layer
   outlet :page_image

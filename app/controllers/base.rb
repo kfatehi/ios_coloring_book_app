@@ -1,13 +1,22 @@
 module ViewController
   class Base < UIViewController
     extend IB
-      
+    
+    def masks
+      [UIInterfaceOrientationMaskAll]
+    end
+    
+    def orientations
+      [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown,
+       UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+    end
+    
     def shouldAutorotateToInterfaceOrientation(o)
-      true
+      orientations.include?(o)
     end
 
     def supportedInterfaceOrientations
-      UIInterfaceOrientationMaskAll
+      masks.inject {|i,n| i | n}
     end
 
     def shouldAutorotate
@@ -18,17 +27,22 @@ module ViewController
       textfield.resignFirstResponder
     end
   end
+
+  class Portrait < Base
+    def orientations
+      [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown]
+    end
+    def masks
+      [UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown]
+    end
+  end
+
   class Landscape < Base
-    def shouldAutorotateToInterfaceOrientation(o)
-      (o == UIInterfaceOrientationLandscapeRight) || (o == UIInterfaceOrientationLandscapeLeft)
+    def orientations
+      [UIInterfaceOrientationLandscapeRight, UIInterfaceOrientationLandscapeLeft]
     end
-
-    def supportedInterfaceOrientations
-      UIInterfaceOrientationMaskLandscapeRight | UIInterfaceOrientationMaskLandscapeLeft
-    end
-
-    def shouldAutorotate
-      true
+    def masks
+      [UIInterfaceOrientationMaskLandscapeRight, UIInterfaceOrientationMaskLandscapeLeft]
     end
   end
 end

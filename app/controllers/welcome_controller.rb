@@ -1,2 +1,2 @@
-class WelcomeController < ViewController::Base  
+class WelcomeController < ViewController::Portrait
 end
