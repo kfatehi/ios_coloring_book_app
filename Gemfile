@@ -3,7 +3,7 @@ source :rubygems
 gem 'rake', '~> 0.9.4'
 gem 'ib'
 gem 'sugarcube', :github => "rubymotion/sugarcube"
-gem 'bubble-wrap', :github => "rubymotion/BubbleWrap"
+gem 'bubble-wrap', :github => "rubymotion/BubbleWrap", :require => 'bubble-wrap/core'
 
 
 # ... for tests

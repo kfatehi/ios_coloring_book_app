@@ -1,0 +1,38 @@
+GIT
+  remote: git://github.com/rubymotion/BubbleWrap.git
+  revision: 36062f34db57d3bca1564db8f87b0aa1f046b823
+  specs:
+    bubble-wrap (1.1.4)
+
+GIT
+  remote: git://github.com/rubymotion/sugarcube.git
+  revision: a5878677b0ea5fd1dabe10845834812f42fcc726
+  specs:
+    sugarcube (0.13.5)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.2.9)
+      i18n (~> 0.6)
+      multi_json (~> 1.0)
+    colored (1.2)
+    i18n (0.6.1)
+    ib (0.2.4)
+      thor (>= 0.15.4)
+      xcodeproj (>= 0.4.0)
+    multi_json (1.5.0)
+    rake (0.9.6)
+    thor (0.16.0)
+    xcodeproj (0.4.0)
+      activesupport (~> 3.2.6)
+      colored (~> 1.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bubble-wrap!
+  ib
+  rake (~> 0.9.4)
+  sugarcube!

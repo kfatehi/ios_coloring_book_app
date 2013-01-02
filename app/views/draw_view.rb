@@ -5,8 +5,8 @@ class DrawView < UIView
 
   def init
     super
-    @brush_size = 5.0
-    @brush_color = UIColor.redColor
+    @brush_size = 15.0
+    @brush_color = UIColor.blueColor
     @needs_to_redraw = false
     @has_input = false
     @paths ||= []
@@ -19,7 +19,6 @@ class DrawView < UIView
   # Touches
 
   def touchesBegan(touches, withEvent:event)
-    superview.player.pause
     touch = touches.anyObject
     @previous_point1 = touch.previousLocationInView(self)
     @previous_point2 = touch.previousLocationInView(self)

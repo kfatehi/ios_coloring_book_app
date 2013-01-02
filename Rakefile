@@ -10,7 +10,7 @@ Motion::Project::App.setup do |app|
 
   app.identifier = "com.pixopop.PixopopColoringBookVolumeOne"
   app.name = 'Pixopop Coloring Book Volume 1'
-  app.device_family = [:iphone, :ipad]
+  app.device_family = [:ipad, :iphone]
   app.interface_orientations << :portrait_upside_down
 
   app.deployment_target = "5.0" 
