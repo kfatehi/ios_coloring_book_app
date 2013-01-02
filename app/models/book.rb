@@ -1,9 +1,10 @@
 class Book
   attr_reader :name, :path
-  
+
   def initialize name
     @name = name
-    @path = File.join(App.resources_path, 'books', name)
+    @path = File.join(App.resources_path, 'books', @name)
+    App::Persistence[@name] ||= {}
   end
 
   def page number

@@ -1,16 +1,26 @@
 class DrawView < UIView  
   attr_accessor :brush_size, :brush_color, :needs_to_redraw, :has_input,
                 :buffer_image, :mid1, :mid2, :cache_brush_size, :previous_point1,
-                :previous_point2, :paths, :path_colors, :current_point 
+                :previous_point2, :paths, :path_colors, :current_point
 
   def self.build(page)
-    # Later we'd access a cached drawing from Page
-    # and load into @paths from page.cached_paths
     draw_view = new
     draw_view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
     draw_view.contentMode = UIViewContentModeScaleToFill
     draw_view.backgroundColor = UIColor.clearColor
+    draw_view.page = page
     draw_view
+  end
+
+  def page=(page)
+    @page = page
+    @paths = @page.paths
+    @path_colors = @page.path_colors
+  end
+
+  def update_page
+    @page.paths = @paths
+    @page.path_colors = @path_colors
   end
 
   def init
@@ -77,6 +87,7 @@ class DrawView < UIView
       # Save
       @paths.addObject(new_path)
       @path_colors.addObject(@brush_color)
+      update_page
       @buffer_image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
       @needs_to_redraw = false
@@ -91,6 +102,7 @@ class DrawView < UIView
   def clear_drawing
     @paths = []
     @path_colors = []
+    update_page
     @buffer_image = UIImage.new
     @has_input = false
     setNeedsDisplay
