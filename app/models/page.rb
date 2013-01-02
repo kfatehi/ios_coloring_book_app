@@ -10,4 +10,8 @@ class Page
   def image
     UIImage.alloc.initWithContentsOfFile self.image_path
   end
+
+  def draw_view
+    @draw_view ||= DrawView.build self
+  end
 end

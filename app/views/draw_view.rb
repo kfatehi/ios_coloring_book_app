@@ -3,6 +3,16 @@ class DrawView < UIView
                 :buffer_image, :mid1, :mid2, :cache_brush_size, :previous_point1,
                 :previous_point2, :paths, :path_colors, :current_point 
 
+  def self.build(page)
+    # Later we'd access a cached drawing from Page
+    # and load into @paths from page.cached_paths
+    draw_view = new
+    draw_view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+    draw_view.contentMode = UIViewContentModeScaleToFill
+    draw_view.backgroundColor = UIColor.clearColor
+    draw_view
+  end
+
   def init
     super
     @brush_size = 15.0
