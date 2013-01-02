@@ -11,11 +11,13 @@ class Page
 
   def load_drawing
     if drawing_data = App::Persistence[@draw_key]
+      p 'loading saved drawing'
       NSKeyedUnarchiver.unarchiveObjectWithData(drawing_data)
     else ; Drawing.new ; end
   end
 
   def save_drawing
+    p 'saving drawing'
     drawing_data = NSKeyedArchiver.archivedDataWithRootObject(@drawing)
     App::Persistence[@draw_key] = drawing_data
   end

@@ -1,7 +1,7 @@
 class DrawView < UIView  
   attr_accessor :brush_size, :brush_color, :needs_to_redraw, :has_input,
                 :buffer_image, :mid1, :mid2, :cache_brush_size, :previous_point1,
-                :previous_point2, :paths, :path_colors, :current_point
+                :previous_point2, :current_point
 
   def self.build(page)
     draw_view = new
@@ -14,17 +14,15 @@ class DrawView < UIView
 
   def drawing=(drawing)
     @drawing = drawing
-    @paths = @drawing.paths
-    @path_colors = @drawing.path_colors
     @drawing.needs_to_render = true
   end
 
-  def render_drawing
+  def render_cached_drawing
     UIGraphicsBeginImageContext(frame.size)
     @buffer_image.drawInRect(CGRectMake(0, 0, frame.size.width, frame.size.height))
     @buffer_image = UIImage.new
-    @paths.each_with_index do |path, index|
-      @path_colors[index].setStroke
+    @drawing.paths.each_with_index do |path, index|
+      @drawing.path_colors[index].setStroke
       path.stroke
     end
     @buffer_image = UIGraphicsGetImageFromCurrentImageContext()
@@ -39,8 +37,7 @@ class DrawView < UIView
     @brush_color = UIColor.blueColor
     @needs_to_redraw = false
     @has_input = false
-    @paths ||= []
-    @path_colors ||= []
+    @drawing ||= Drawing.new
     @buffer_image = UIImage.new
     @cache_brush_size = @brush_size
     self
@@ -80,7 +77,7 @@ class DrawView < UIView
   # Display
 
   def drawRect(rect)
-    render_drawing if @drawing.needs_to_render
+    render_cached_drawing if @drawing.needs_to_render
     # Avoid overdraw
     if needs_to_redraw
       # Render to buffer
@@ -95,8 +92,8 @@ class DrawView < UIView
       @brush_color.setStroke
       new_path.stroke
       # Save
-      @paths.addObject(new_path)
-      @path_colors.addObject(@brush_color)
+      @drawing.paths.addObject(new_path)
+      @drawing.path_colors.addObject(@brush_color)
       @buffer_image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
       @needs_to_redraw = false
@@ -109,8 +106,8 @@ class DrawView < UIView
   end
 
   def clear_drawing
-    @paths = []
-    @path_colors = []
+    @drawing.paths = []
+    @drawing.path_colors = []
     @buffer_image = UIImage.new
     @has_input = false
     setNeedsDisplay

@@ -29,4 +29,8 @@ class ColorController < ViewController::Portrait
     $draw_view = DrawView.build(page)
     @drawing_container.addSubview $draw_view
   end
+
+  def viewWillDisappear animated
+    $current_page.save_drawing
+  end
 end

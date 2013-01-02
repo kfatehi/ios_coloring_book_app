@@ -5,6 +5,10 @@ class AppDelegate
     switch_to_vc load_vc("WelcomeController")
   end
 
+  def applicationWillResignActive(application)
+    $current_page.save_drawing if $current_page
+  end
+
   private
   def load_vc(identifier)
     name = "#{Device.iphone? ? 'iPhone' : 'iPad'}Storyboard"
