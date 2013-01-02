@@ -4,11 +4,11 @@ class Page
   def initialize book, number
     @book = book
     @number = number
-    @image_path = File.join(App.resources_path, @book.name, "#{self.number}.png")
+    @image_path = File.join(@book.path, "#{'%02d' % number}.png")
   end
 
   def image
-    UIImage.alloc.initWithContentsOfFile self.image_path
+    UIImage.alloc.initWithContentsOfFile image_path
   end
 
   def draw_view
