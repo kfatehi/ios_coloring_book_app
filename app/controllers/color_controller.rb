@@ -26,6 +26,7 @@ class ColorController < ViewController::Portrait
 
   def color page
     @page_image.image = page.image
-    @drawing_container.addSubview page.draw_view
+    $draw_view = DrawView.build(page)
+    @drawing_container.addSubview $draw_view
   end
 end

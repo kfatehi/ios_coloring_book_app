@@ -1,5 +1,6 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
+    $debug_path = File.join(App.documents_path, 'testfile')
     @window = UIWindow.alloc.initWithFrame UIScreen.mainScreen.bounds
     switch_to_vc load_vc("WelcomeController")
   end

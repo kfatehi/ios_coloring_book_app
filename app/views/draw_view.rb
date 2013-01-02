@@ -8,19 +8,29 @@ class DrawView < UIView
     draw_view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
     draw_view.contentMode = UIViewContentModeScaleToFill
     draw_view.backgroundColor = UIColor.clearColor
-    draw_view.page = page
+    draw_view.drawing = page.drawing
     draw_view
   end
 
-  def page=(page)
-    @page = page
-    @paths = @page.paths
-    @path_colors = @page.path_colors
+  def drawing=(drawing)
+    @drawing = drawing
+    @paths = @drawing.paths
+    @path_colors = @drawing.path_colors
+    @drawing.needs_to_render = true
   end
 
-  def update_page
-    @page.paths = @paths
-    @page.path_colors = @path_colors
+  def render_drawing
+    UIGraphicsBeginImageContext(frame.size)
+    @buffer_image.drawInRect(CGRectMake(0, 0, frame.size.width, frame.size.height))
+    @buffer_image = UIImage.new
+    @paths.each_with_index do |path, index|
+      @path_colors[index].setStroke
+      path.stroke
+    end
+    @buffer_image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    setNeedsDisplay
+    @drawing.needs_to_render = false
   end
 
   def init
@@ -43,7 +53,6 @@ class DrawView < UIView
     @previous_point1 = touch.previousLocationInView(self)
     @previous_point2 = touch.previousLocationInView(self)
     @current_point = touch.locationInView(self)
-    @has_input = true
   end
 
   def touchesMoved(touches, withEvent:event)
@@ -71,11 +80,12 @@ class DrawView < UIView
   # Display
 
   def drawRect(rect)
+    render_drawing if @drawing.needs_to_render
     # Avoid overdraw
     if needs_to_redraw
       # Render to buffer
       UIGraphicsBeginImageContext(frame.size)
-      @buffer_image.drawInRect(CGRectMake(0, 0, frame.size.width, frame.size.height)) 
+      @buffer_image.drawInRect(CGRectMake(0, 0, frame.size.width, frame.size.height))
       @buffer_image = UIImage.new
       new_path = UIBezierPath.bezierPath
       new_path.moveToPoint(@mid1)
@@ -87,7 +97,6 @@ class DrawView < UIView
       # Save
       @paths.addObject(new_path)
       @path_colors.addObject(@brush_color)
-      update_page
       @buffer_image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
       @needs_to_redraw = false
@@ -102,7 +111,6 @@ class DrawView < UIView
   def clear_drawing
     @paths = []
     @path_colors = []
-    update_page
     @buffer_image = UIImage.new
     @has_input = false
     setNeedsDisplay
