@@ -1,5 +1,7 @@
 source :rubygems
 
+gem 'cocoapods'
+gem 'motion-cocoapods'
 gem 'rake', '~> 0.9.4'
 gem 'ib'
 gem 'sugarcube', :github => "rubymotion/sugarcube"

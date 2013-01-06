@@ -1,0 +1,236 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<enum value='2' name='InfComponentIndexBrightness'/>
+<enum value='0' name='InfComponentIndexHue'/>
+<enum value='1' name='InfComponentIndexSaturation'/>
+<function name='HSVtoRGB'>
+<arg declared_type='float' type='f' name='h'/>
+<arg declared_type='float' type='f' name='s'/>
+<arg declared_type='float' type='f' name='v'/>
+<arg declared_type='float*' type='^f' name='r'/>
+<arg declared_type='float*' type='^f' name='g'/>
+<arg declared_type='float*' type='^f' name='b'/>
+<retval declared_type='void' type='v'/>
+</function>
+<function name='RGBToHSV'>
+<arg declared_type='float' type='f' name='r'/>
+<arg declared_type='float' type='f' name='g'/>
+<arg declared_type='float' type='f' name='b'/>
+<arg declared_type='float*' type='^f' name='h'/>
+<arg declared_type='float*' type='^f' name='s'/>
+<arg declared_type='float*' type='^f' name='v'/>
+<arg declared_type='BOOL' type='B' name='preserveHS'/>
+<retval declared_type='void' type='v'/>
+</function>
+<function name='createCheckerPatternImage'>
+<retval declared_type='CGImageRef' type='^{CGImage=}'/>
+</function>
+<function name='createHSVBarContentImage'>
+<arg declared_type='InfComponentIndex' type='i' name='barComponentIndex'/>
+<arg declared_type='float*' type='^f' name='hsv'/>
+<retval declared_type='CGImageRef' type='^{CGImage=}'/>
+</function>
+<function name='createSaturationBrightnessSquareContentImageWithHue'>
+<arg declared_type='float' type='f' name='hue'/>
+<retval declared_type='CGImageRef' type='^{CGImage=}'/>
+</function>
+<function name='pin'>
+<arg declared_type='float' type='f' name='minValue'/>
+<arg declared_type='float' type='f' name='value'/>
+<arg declared_type='float' type='f' name='maxValue'/>
+<retval declared_type='float' type='f'/>
+</function>
+<class name='InfAlphaBarPicker'>
+<method selector='setValue:'>
+<arg declared_type='float' type='f' index='0' name='value'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='value'>
+<retval declared_type='float' type='f'/>
+</method>
+</class>
+<class name='InfAlphaBarView'>
+<method selector='color'>
+<retval declared_type='UIColor*' type='@'/>
+</method>
+<method selector='setColor:'>
+<arg declared_type='UIColor*' type='@' index='0' name='color'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<class name='InfColorBarPicker'>
+<method selector='setValue:'>
+<arg declared_type='float' type='f' index='0' name='value'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='value'>
+<retval declared_type='float' type='f'/>
+</method>
+</class>
+<class name='InfColorIndicatorView'>
+<method selector='color'>
+<retval declared_type='UIColor*' type='@'/>
+</method>
+<method selector='fill'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='setColor:'>
+<arg declared_type='UIColor*' type='@' index='0' name='color'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setFill:'>
+<arg declared_type='BOOL' type='B' index='0' name='fill'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<class name='InfColorPickerController'>
+<method selector='alphaPicker'>
+<retval declared_type='InfAlphaBarPicker*' type='@'/>
+</method>
+<method selector='alphaView'>
+<retval declared_type='InfAlphaBarView*' type='@'/>
+</method>
+<method selector='barPicker'>
+<retval declared_type='InfColorBarPicker*' type='@'/>
+</method>
+<method selector='barView'>
+<retval declared_type='InfColorBarView*' type='@'/>
+</method>
+<method class_method='true' selector='colorPickerViewController'>
+<retval declared_type='InfColorPickerController*' type='@'/>
+</method>
+<method selector='delegate'>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='idealSizeForViewInPopover'>
+<retval declared_type='CGSize' type='{CGSize=ff}'/>
+</method>
+<method selector='navController'>
+<retval declared_type='UINavigationController*' type='@'/>
+</method>
+<method selector='presentModallyOverViewController:'>
+<arg declared_type='UIViewController*' type='@' index='0' name='controller'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='resultColor'>
+<retval declared_type='UIColor*' type='@'/>
+</method>
+<method selector='resultColorView'>
+<retval declared_type='UIView*' type='@'/>
+</method>
+<method selector='setAlphaPicker:'>
+<arg declared_type='InfAlphaBarPicker*' type='@' index='0' name='alphaPicker'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setAlphaView:'>
+<arg declared_type='InfAlphaBarView*' type='@' index='0' name='alphaView'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setBarPicker:'>
+<arg declared_type='InfColorBarPicker*' type='@' index='0' name='barPicker'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setBarView:'>
+<arg declared_type='InfColorBarView*' type='@' index='0' name='barView'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setDelegate:'>
+<arg declared_type='id' type='@' index='0' name='delegate'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setNavController:'>
+<arg declared_type='UINavigationController*' type='@' index='0' name='navController'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setResultColor:'>
+<arg declared_type='UIColor*' type='@' index='0' name='resultColor'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setResultColorView:'>
+<arg declared_type='UIView*' type='@' index='0' name='resultColorView'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setSourceColor:'>
+<arg declared_type='UIColor*' type='@' index='0' name='sourceColor'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setSourceColorView:'>
+<arg declared_type='UIView*' type='@' index='0' name='sourceColorView'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setSquarePicker:'>
+<arg declared_type='InfColorSquarePicker*' type='@' index='0' name='squarePicker'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setSquareView:'>
+<arg declared_type='InfColorSquareView*' type='@' index='0' name='squareView'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='sourceColor'>
+<retval declared_type='UIColor*' type='@'/>
+</method>
+<method selector='sourceColorView'>
+<retval declared_type='UIView*' type='@'/>
+</method>
+<method selector='squarePicker'>
+<retval declared_type='InfColorSquarePicker*' type='@'/>
+</method>
+<method selector='squareView'>
+<retval declared_type='InfColorSquareView*' type='@'/>
+</method>
+</class>
+<class name='InfColorSquarePicker'>
+<method selector='hue'>
+<retval declared_type='float' type='f'/>
+</method>
+<method selector='setHue:'>
+<arg declared_type='float' type='f' index='0' name='hue'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setValue:'>
+<arg declared_type='CGPoint' type='{CGPoint=ff}' index='0' name='value'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='value'>
+<retval declared_type='CGPoint' type='{CGPoint=ff}'/>
+</method>
+</class>
+<class name='InfColorSquareView'>
+<method selector='hue'>
+<retval declared_type='float' type='f'/>
+</method>
+<method selector='setHue:'>
+<arg declared_type='float' type='f' index='0' name='hue'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<class name='InfSourceColorView'>
+<method selector='setTrackingInside:'>
+<arg declared_type='BOOL' type='B' index='0' name='trackingInside'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='trackingInside'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+</class>
+<class name='NSObject'>
+<method selector='colorPickerControllerDidChangeColor:'>
+<arg declared_type='InfColorPickerController*' type='@' index='0' name='controller'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='colorPickerControllerDidFinish:'>
+<arg declared_type='InfColorPickerController*' type='@' index='0' name='controller'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<informal_protocol name='InfColorPickerControllerDelegate'>
+<method type='v12@0:4@8' selector='colorPickerControllerDidChangeColor:'>
+<arg declared_type='InfColorPickerController*' type='@' index='0' name='controller'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method type='v12@0:4@8' selector='colorPickerControllerDidFinish:'>
+<arg declared_type='InfColorPickerController*' type='@' index='0' name='controller'/>
+<retval declared_type='void' type='v'/>
+</method>
+</informal_protocol>
+</signatures>

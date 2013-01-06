@@ -5,6 +5,9 @@ require 'bundler'
 Bundler.setup
 Bundler.require
 
+require 'rubygems'
+require 'motion-cocoapods'
+
 Motion::Project::App.setup do |app|
   app.vendor_project 'vendor/Base64', :static
 
@@ -15,7 +18,7 @@ Motion::Project::App.setup do |app|
 
   app.deployment_target = "5.0" 
 
-  
+  app.vendor_project 'vendor/InfColorPicker', :static
 
   app.development do
     app.entitlements['get-task-allow'] = true
