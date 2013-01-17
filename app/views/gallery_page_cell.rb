@@ -1,10 +1,12 @@
 class GalleryPageCell < UICollectionViewCell
   extend Taggable
-  Tags page_number:10, img:32, button:45
+  Tags page_number:10, img:32
 
   def setSelected(selected, animated:animated)
+    p 'set selected!'
     self.layer.borderColor = UIColor.yellowColor.CGColor
     self.layer.borderWidth = (selected ? 2 : 0).to_f
+    self.layer.backgroundColor = UIColor.yellowColor.CGColor
   end
 
   def page= page
@@ -12,9 +14,5 @@ class GalleryPageCell < UICollectionViewCell
     @page = page
     self.page_number.setText @page.number.to_s
     self.img.image = @page.thumb
-    self.button.on(:touch_up_inside) do |btn|
-      p "set current page to #{@page.number}"
-      $current_page = @page
-    end
   end
 end

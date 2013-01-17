@@ -44,7 +44,7 @@ class Book
   def restore_page
     unless current_page_number = App::Persistence['current_page_number']
       p 'There was no page to restore. I will load page one.'
-      current_page_number = 1
+      current_page_number = 0
     else
       p 'Restoring page ' + current_page_number.to_s
     end

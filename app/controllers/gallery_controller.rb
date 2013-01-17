@@ -11,6 +11,11 @@ class GalleryController < ViewController::Portrait
     @collection_view.reloadData
   end
 
+  def collectionView(cv, didSelectItemAtIndexPath:index_path)
+    $current_page = $current_book.page index_path.row
+    self.performSegueWithIdentifier('toColor', sender:self)
+  end
+
   def back sender
     dismiss
   end
