@@ -1,13 +1,17 @@
 class Page
-  attr_reader :number, :book, :image_path, :identifier, :drawing, :image
+  attr_reader :number, :book, :image_path, :identifier, :drawing, :thumb
 
   def initialize book_path, number
     @number = number
     @draw_key = "#{book_path}-#{'%02d' % number}"
     @image_path = File.join(book_path, "#{'%02d' % number}.png")
+    @thumb_path = File.join(book_path, 'thumbs', "#{'%02d' % number}.png")
     @drawing = load_drawing
-    p 'building image.'
-    @image = UIImage.imageWithContentsOfFile @image_path
+    @thumb = UIImage.imageWithContentsOfFile @thumb_path
+  end
+
+  def image
+    UIImage.imageWithContentsOfFile @image_path
   end
 
   def load_drawing

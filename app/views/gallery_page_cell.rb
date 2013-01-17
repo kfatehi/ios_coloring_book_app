@@ -11,14 +11,10 @@ class GalleryPageCell < UICollectionViewCell
     p 'gallery page cell made'
     @page = page
     self.page_number.setText @page.number.to_s
-    self.img.image = @page.image
+    self.img.image = @page.thumb
     self.button.on(:touch_up_inside) do |btn|
       p "set current page to #{@page.number}"
       $current_page = @page
     end
-  end
-
-  def prepareForSegue(segue, sender:sender)
-    $current_page ||= 0
   end
 end
