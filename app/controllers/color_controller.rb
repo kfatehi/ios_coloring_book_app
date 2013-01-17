@@ -1,4 +1,5 @@
 class ColorController < ViewController::Portrait
+  include Dismissable
   
   outlet :drawing_container
   outlet :page_image
@@ -17,6 +18,10 @@ class ColorController < ViewController::Portrait
     $current_page = $current_book.restore_page
     color $current_page
     super
+  end
+
+  def back sender
+    dismiss
   end
 
   def change_color sender

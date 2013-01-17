@@ -1,12 +1,12 @@
 class Page
-  attr_reader :number, :book, :image_path, :identifier, :drawing
+  attr_reader :number, :book, :image_path, :identifier, :drawing, :image
 
-  def initialize book, number
-    @book = book
+  def initialize book_path, number
     @number = number
-    @draw_key = "#{@book.path}-#{'%02d' % number}"
-    @image_path = File.join(@book.path, "#{'%02d' % number}.png")
+    @draw_key = "#{book_path}-#{'%02d' % number}"
+    @image_path = File.join(book_path, "#{'%02d' % number}.png")
     @drawing = load_drawing
+    @image = UIImage.imageWithContentsOfFile @image_path
   end
 
   def load_drawing
@@ -20,9 +20,5 @@ class Page
     p 'saving drawing'
     drawing_data = NSKeyedArchiver.archivedDataWithRootObject(@drawing)
     App::Persistence[@draw_key] = drawing_data
-  end
-
-  def image
-    UIImage.alloc.initWithContentsOfFile image_path
   end
 end
