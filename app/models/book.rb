@@ -5,10 +5,6 @@ class Book
     @name = name
     @path = File.join(App.resources_path, 'books', @name)
     @pages = Dir.glob("#{@path}/*.png").map {|i| Page.new @path, i[-6..-5].to_i}
-    @gallery_page_cells = []
-    @pages.each_with_index do |page, index|
-      @gallery_page_cells << GalleryPageCell.alloc
-    end
     @page_count = @pages.count
   end
 
@@ -27,7 +23,7 @@ class Book
     p "book collection view item building at pos #{index_path.row}"
     @reuseIdentifier ||= "GALLERY_PAGE_CELL"
     cell = cv.dequeueReusableCellWithReuseIdentifier(@reuseIdentifier, forIndexPath:index_path) || begin
-      @gallery_cell[index_path.row].initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:@reuseIdentifier)
+      GalleryPageCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:@reuseIdentifier)
     end
     cell.page = @pages[index_path.row]
     cell

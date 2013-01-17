@@ -14,8 +14,8 @@ class ColorController < ViewController::Portrait
     else
       :red.uicolor
     end
-    $current_book = Book.restore
-    $current_page = $current_book.restore_page
+    $current_book ||= Book.restore
+    $current_page ||= $current_book.restore_page
     color $current_page
     super
   end

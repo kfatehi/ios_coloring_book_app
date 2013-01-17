@@ -6,6 +6,7 @@ class Page
     @draw_key = "#{book_path}-#{'%02d' % number}"
     @image_path = File.join(book_path, "#{'%02d' % number}.png")
     @drawing = load_drawing
+    p 'building image.'
     @image = UIImage.imageWithContentsOfFile @image_path
   end
 
